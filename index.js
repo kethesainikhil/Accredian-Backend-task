@@ -6,7 +6,11 @@ const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 
 require('dotenv').config()
-app.use(cors());
+app.use(cors(
+    {
+        origin: "*",
+    }
+));
 app.use(express.json())
 
 const referDetailsSchema = z.object({
