@@ -2,6 +2,7 @@ const express = require("express")
 const cors = require("cors");
 const app =  express();
 const z = require("zod");
+const axios = require("axios")
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 
