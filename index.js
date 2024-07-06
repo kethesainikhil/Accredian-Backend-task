@@ -5,7 +5,7 @@ const z = require("zod");
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 
-
+require('dotenv').config()
 app.use(cors());
 app.use(express.json())
 
@@ -101,6 +101,23 @@ app.post("/insertRefer",async (req,res)=>{
         }
 })
 
+
+//to stop from spinning down the inactivity
+const url = `${process.env.BACKEND_URL}` // Replace with your Render URL
+const interval = 30000; // Interval in milliseconds (30 seconds)
+
+function reloadWebsite() {
+  axios.get(url)
+    .then(response => {
+      console.log(`Reloaded at ${new Date().toISOString()}: Status Code ${response.status}`);
+    })
+    .catch(error => {
+      console.error(`Error reloading at ${new Date().toISOString()}:`, error.message);
+    });
+}
+
+
+setInterval(reloadWebsite, interval);
 
 
 
