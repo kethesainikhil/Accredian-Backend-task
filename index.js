@@ -109,7 +109,7 @@ app.post("/insertRefer",async (req,res)=>{
                         refereePhoneNo : req.body.refereePhoneNo
                     }
                 })
-                const{refereeEmail} = req.body;
+                const{refereeEmail,refereeName} = req.body;
                 try {
                     const result = await sendMail({ to:refereeEmail, 
                         subject:`You got referral by ${alreadyAddedUser.referrerName} to Join Accredian`,
@@ -118,7 +118,7 @@ app.post("/insertRefer",async (req,res)=>{
                                         <head>
                                             <meta charset="UTF-8">
                                             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                                            <title>Welcome to Accredian</title>
+                                            <title>Hey! ${refereeName} Welcome to Accredian</title>
                                         </head>
                                         <body style="font-family: Arial, sans-serif; background-color: #f0f0f0; padding: 20px;">
                                             <div style="background-color: #ffffff; max-width: 600px; margin: 0 auto; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
@@ -167,7 +167,7 @@ app.post("/insertRefer",async (req,res)=>{
                                     <head>
                                         <meta charset="UTF-8">
                                         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                                        <title>Welcome to Accredian</title>
+                                        <title>Hey! ${referedTo.refereeName} Welcome to Accredian</title>
                                     </head>
                                     <body style="font-family: Arial, sans-serif; background-color: #f0f0f0; padding: 20px;">
                                         <div style="background-color: #ffffff; max-width: 600px; margin: 0 auto; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
